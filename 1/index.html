@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Povi - Photography & Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #d13636;
+            --heading-color: #1f2230;
+            --text-color: #6d6d6d;
+            --light-bg: #f8f9fa;
+            --dark-bg: #1f2230;
+            --white-color: #ffffff;
+            --border-color: #e8e8e8;
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Poppins', sans-serif;
+        }
+
+        /* Basic Reset & Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--text-color);
+            background-color: var(--white-color);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title .sub-title {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title h2 {
+            font-size: 45px;
+            font-weight: 800;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--heading-color);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--heading-color);
+            text-decoration: underline;
+            padding: 12px 15px;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            color: var(--heading-color);
+            background-color: var(--white-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border-color: var(--primary-color);
+        }
+
+
+        /* Header */
+        .header {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            padding: 20px 0;
+            background-color: var(--white-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: var(--heading-font);
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--heading-color);
+        }
+
+        .logo img {
+            height: 35px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-item .nav-link {
+            color: var(--heading-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item .nav-link:hover, .nav-item .nav-link.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-item .nav-link i {
+            font-size: 14px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 24px;
+            color: var(--heading-color);
+        }
+        .cart-icon span {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: var(--light-bg);
+            padding-top: 180px;
+            padding-bottom: 120px;
+            overflow: hidden;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-41c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm62 76c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM36 95c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-22-40c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-10-2c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z" fill="%23e9ecef" fill-opacity="0.4" fill-rule="evenodd"/></svg>');
+        }
+        
+        .hero-content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            max-width: 50%;
+        }
+        
+        .hero-text .sub-title {
+             color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .hero-text h1 {
+            font-size: 60px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            max-width: 450px;
+        }
+        
+        .hero-images {
+            position: relative;
+            width: 45%;
+            height: 550px;
+        }
+        
+        .hero-images .photo {
+            position: absolute;
+            background-color: white;
+            padding: 15px 15px 30px 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        
+        .hero-images .main-photo {
+            width: 350px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(5deg);
+            z-index: 2;
+        }
+        
+        .hero-images .sub-photo-1 {
+            width: 150px;
+            top: 20px;
+            right: 0;
+            transform: rotate(-10deg);
+            z-index: 1;
+        }
+
+        .hero-images .sub-photo-2 {
+            width: 380px;
+            bottom: 0;
+            right: -20px;
+            transform: rotate(8deg);
+            z-index: 3;
+        }
+        
+        .hero-images .sub-photo-3 {
+            width: 100px;
+            bottom: 100px;
+            left: 0;
+            transform: rotate(-15deg);
+            z-index: 1;
+        }
+        
+        .scroll-down {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .scroll-down i {
+            font-size: 30px;
+            color: var(--primary-color);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+
+        /* Why Choose Us Section */
+        .why-us-section {
+            padding: 60px 0;
+        }
+        
+        .why-us-section .section-title {
+            margin-bottom: 0;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--light-bg);
+            position: relative;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: var(--light-bg);
+            border-radius: 50% / 100%;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        
+        .about-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .about-images {
+            flex-basis: 50%;
+            position: relative;
+            height: 500px;
+        }
+        .about-images .photo {
+             position: absolute;
+            background-color: white;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 3px;
+        }
+        
+        .about-images .photo-1 {
+            width: 350px;
+            top: 0;
+            left: 0;
+            transform: rotate(-8deg);
+            z-index: 2;
+        }
+
+        .about-images .photo-2 {
+            width: 200px;
+            top: 50px;
+            right: 0;
+            transform: rotate(5deg);
+        }
+
+        .about-images .photo-3 {
+            width: 250px;
+            bottom: 100px;
+            left: 100px;
+            transform: rotate(10deg);
+        }
+        .about-images .photo-4 {
+            width: 220px;
+            bottom: 0;
+            right: 50px;
+            transform: rotate(-5deg);
+            z-index: 3;
+        }
+        
+        .about-text {
+            flex-basis: 50%;
+        }
+        
+        .about-text .sub-title {
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .about-text h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-list {
+            margin-bottom: 30px;
+        }
+        
+        .about-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .about-list li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .service-card-content {
+            padding: 25px 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .service-card .view-more {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 0;
+            background-image: url('https://placehold.co/1920x600/a39594/ffffff?text=Photographer');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .cta-overlay {
+            padding: 120px 0;
+            background-color: rgba(0,0,0,0.3);
+        }
+        
+        .cta-wrapper {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .cta-box {
+            background-color: rgba(255,255,255,0.95);
+            padding: 50px;
+            border-radius: 10px;
+            border: 2px solid white;
+            max-width: 500px;
+        }
+        
+        .cta-box h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .cta-box p {
+            margin-bottom: 25px;
+        }
+        
+        /* Photoshoot Section */
+        .photoshoot-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 30px;
+        }
+
+        .photoshoot-item {
+            text-align: center;
+        }
+        .photoshoot-item .image-wrapper {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .photoshoot-item h3 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .photoshoot-item.wide {
+            grid-column: span 2;
+        }
+        
+        .photoshoot-item.tall {
+             grid-row: span 2;
+        }
+
+        .photoshoot-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .photoshoot-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photoshoot-footer {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background-color: var(--light-bg);
+            position: relative;
+        }
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: var(--light-bg);
+            border-radius: 50% / 100%;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: var(--white-color);
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-card h3 {
+            font-size: 22px;
+            font-family: var(--body-font);
+            font-weight: 500;
+        }
+        
+        .pricing-card .price {
+            font-size: 50px;
+            font-family: var(--heading-font);
+            color: var(--heading-color);
+            margin: 20px 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 18px;
+            font-family: var(--body-font);
+            color: var(--text-color);
+        }
+        
+        .pricing-card .features {
+            text-align: left;
+            margin: 30px 0;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Questions/Contact Form Section */
+        .questions-section {
+            background-color: var(--dark-bg);
+            padding: 0;
+        }
+        .questions-wrapper {
+            display: flex;
+        }
+        .questions-image {
+            flex-basis: 50%;
+        }
+        .questions-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .questions-form {
+            flex-basis: 50%;
+            padding: 80px 60px;
+        }
+        .questions-form h2 {
+            color: var(--white-color);
+            font-size: 45px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #4a4a4a;
+            background-color: transparent;
+            border-radius: 5px;
+            color: var(--white-color);
+            font-family: var(--body-font);
+        }
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: #a0a0a0;
+        }
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Testimonials Section */
+        .testimonial-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+        }
+        .testimonial-image {
+            flex-basis: 55%;
+        }
+        .testimonial-image img {
+            border-radius: 10px;
+            width: 100%;
+        }
+        .testimonial-content {
+            flex-basis: 45%;
+            background-color: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 10px;
+            position: relative;
+            margin-left: -100px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .author-info h4 {
+            font-size: 20px;
+            font-family: var(--body-font);
+            font-weight: 600;
+        }
+        .author-info span {
+            color: var(--text-color);
+            font-size: 14px;
+        }
+        .testimonial-text {
+            font-style: italic;
+        }
+        .testimonial-nav {
+            position: absolute;
+            bottom: -70px;
+            left: 0;
+        }
+        .testimonial-nav i {
+            font-size: 24px;
+            color: var(--heading-color);
+            margin-right: 15px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .testimonial-nav i:hover {
+            color: var(--primary-color);
+        }
+
+        /* Blog Section */
+        .blog-section {
+             background-color: var(--light-bg);
+            position: relative;
+        }
+        .blog-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: var(--light-bg);
+            border-radius: 50% / 100%;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .blog-post-card {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .blog-post-card .post-image {
+            height: 250px;
+        }
+        .blog-post-card .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .blog-post-card .post-content {
+            padding: 25px;
+        }
+        .post-meta {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .post-meta .dot {
+            color: var(--primary-color);
+            margin-right: 5px;
+        }
+        .blog-post-card h3 {
+            font-size: 20px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        .blog-post-card p {
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        .blog-post-card .read-more {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            color: #a0a0a0;
+            padding-top: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232c303a' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .footer-widgets {
+            display: grid;
+            grid-template-columns: 3fr 2fr 2fr 3fr;
+            gap: 40px;
+            padding-bottom: 60px;
+        }
+        
+        .footer-widget h4 {
+            color: var(--white-color);
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-widget h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-widget p {
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #4a4a4a;
+            background: transparent;
+            color: white;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .newsletter-form button {
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #4a4a4a;
+            border-radius: 50%;
+            color: #a0a0a0;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--white-color);
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #a0a0a0;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a::before {
+            content: '•';
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white-color);
+        }
+        
+        .instagram-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .instagram-gallery img {
+            border-radius: 5px;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info i {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .copyright-area {
+            border-top: 1px solid #333;
+            padding: 25px 0;
+            text-align: center;
+        }
+        
+        .copyright-area a {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <img src="https://placehold.co/40x40/d13636/ffffff?text=P" alt="Povi Logo">
+                    Povi
+                </a>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#" class="nav-link active">Home <i class='bx bx-chevron-down'></i></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Services <i class='bx bx-chevron-down'></i></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Shop <i class='bx bx-chevron-down'></i></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Pages <i class='bx bx-chevron-down'></i></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="header-right">
+                    <a href="#" class="cart-icon">
+                        <i class='bx bx-shopping-bag'></i>
+                        <span>0</span>
+                    </a>
+                    <a href="#" class="btn btn-primary">BOOK NOW</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content-wrapper">
+                    <div class="hero-text">
+                        <span class="sub-title">PROFESSIONAL PHOTOGRAPHY SERVICES</span>
+                        <h1>Capture Love, Joy & Everything With Us</h1>
+                        <p>It is a long established fact that a reader will be distracted by the reale he point of using Lorem Ipsum is that it has a more-or-less normal valid.</p>
+                    </div>
+                    <div class="hero-images">
+                         <div class="photo main-photo">
+                            <img src="https://placehold.co/350x450/d3bba8/333333?text=Portrait" alt="Main Portrait">
+                        </div>
+                        <div class="photo sub-photo-2">
+                             <img src="https://placehold.co/380x250/bfaea1/333333?text=Portrait" alt="Curly Hair Portrait">
+                        </div>
+                        <div class="photo sub-photo-1">
+                            <img src="https://placehold.co/150x200/a39594/ffffff?text=Couple" alt="Couple Photo">
+                        </div>
+                         <div class="photo sub-photo-3">
+                            <img src="https://placehold.co/100x120/d9c7ba/333333?text=Baby" alt="Baby Photo">
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-down">
+                    <i class='bx bx-down-arrow-alt'></i>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Why Choose Us Section -->
+        <section class="why-us-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="sub-title">WHY CHOOSE US</span>
+                    <h2>We Are Different & Professional</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-wrapper">
+                    <div class="about-images">
+                        <div class="photo photo-1"><img src="https://placehold.co/350x450/777777/ffffff?text=Photographer" alt="Photographer from above"></div>
+                        <div class="photo photo-2"><img src="https://placehold.co/200x280/d3bba8/333333?text=Couple" alt="Couple hug"></div>
+                        <div class="photo photo-3"><img src="https://placehold.co/250x350/c7a78e/333333?text=Woman" alt="Woman portrait"></div>
+                        <div class="photo photo-4"><img src="https://placehold.co/220x150/bfaea1/333333?text=Happy+Couple" alt="Happy Couple"></div>
+                    </div>
+                    <div class="about-text">
+                        <span class="sub-title">ABOUT US</span>
+                        <h2>We're The Leading Photo Studio In The Country</h2>
+                        <p>Best Strategic planning dolor sit amet consectetur adipiscing elit. Scel erus isque ametus odio velit auctor nam elit nulla eget sodales dui pulvinar dolor strategic planning dolor sit sectetur.</p>
+                        <ul class="about-list">
+                            <li><i class='bx bxs-circle'></i> Lorem ipsum is not simply random text</li>
+                            <li><i class='bx bxs-circle'></i> Making this the first true generator on the internet</li>
+                            <li><i class='bx bxs-circle'></i> various version have evolved these years</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">LEARN MORE</a>
+                        <a href="#" class="btn btn-secondary">GET STARTED</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="sub-title">OUR SERVICES</span>
+                    <h2>We Provide Best Services</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="https://placehold.co/300x300/c7a78e/333333?text=Woman" alt="Woman Portrait">
+                        <div class="service-card-content">
+                            <h3>Woman Portrait</h3>
+                            <a href="#" class="view-more">VIEW MORE</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://placehold.co/300x300/e8c3b9/333333?text=Child" alt="Children Portrait">
+                        <div class="service-card-content">
+                            <h3>Children Portrait</h3>
+                            <a href="#" class="view-more">VIEW MORE</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://placehold.co/300x300/8f9a8a/ffffff?text=Man" alt="Man Portrait">
+                        <div class="service-card-content">
+                            <h3>Man Portrait</h3>
+                            <a href="#" class="view-more">VIEW MORE</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://placehold.co/300x300/d3bba8/333333?text=Couple" alt="Couple Moment">
+                        <div class="service-card-content">
+                            <h3>Couple Moment</h3>
+                            <a href="#" class="view-more">VIEW MORE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-overlay">
+                <div class="container">
+                    <div class="cta-wrapper">
+                        <div class="cta-box">
+                            <h2>Need Help Let's Work Together</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos odit quib usdam quis maiores, ipsa ullam sunt ab doloremque officiis minima!</p>
+                            <a href="#" class="btn btn-primary">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photoshoot Section -->
+        <section class="photoshoot-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="sub-title">OUR PROJECT</span>
+                    <h2>Discover Our Photoshoot</h2>
+                </div>
+                <div class="photoshoot-grid">
+                    <div class="photoshoot-item">
+                        <div class="image-wrapper"><img src="https://placehold.co/255x255/c7a78e/333333?text=Pre-Wedding" alt="Pre Wedding"></div>
+                        <h3>Pre Wedding</h3>
+                    </div>
+                    <div class="photoshoot-item wide">
+                        <div class="image-wrapper"><img src="https://placehold.co/540x255/d3bba8/333333?text=Wedding" alt="Wedding"></div>
+                        <h3>Wedding</h3>
+                    </div>
+                    <div class="photoshoot-item tall">
+                        <div class="image-wrapper"><img src="https://placehold.co/255x540/777777/ffffff?text=Headshot" alt="Headshot"></div>
+                        <h3>Headshot</h3>
+                    </div>
+                    <div class="photoshoot-item tall">
+                        <div class="image-wrapper"><img src="https://placehold.co/255x540/bfaea1/333333?text=Travel" alt="Travel"></div>
+                        <h3>Travel</h3>
+                    </div>
+                    <div class="photoshoot-item">
+                        <div class="image-wrapper"><img src="https://placehold.co/255x255/a39594/ffffff?text=Portrait" alt="Portrait"></div>
+                        <h3>Portrait</h3>
+                    </div>
+                    <div class="photoshoot-item">
+                        <div class="image-wrapper"><img src="https://placehold.co/255x255/d9c7ba/333333?text=Maternity" alt="Maternity"></div>
+                        <h3>Maternity</h3>
+                    </div>
+                </div>
+                <div class="photoshoot-footer">
+                    <a href="#" class="btn btn-outline">SEE ALL PROJECTS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="sub-title">OUR PRICING</span>
+                    <h2>Choose Your Packages</h2>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Basic Package</h3>
+                        <div class="price">$49.00 <span>/Month</span></div>
+                        <ul class="features">
+                            <li><i class='bx bx-check'></i> 1 Hour Session</li>
+                            <li><i class='bx bx-check'></i> 10 Digital Images</li>
+                            <li><i class='bx bx-check'></i> Online Gallery</li>
+                            <li><i class='bx bx-check'></i> 1 Photographer</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">PURCHASE NOW</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Premium Package</h3>
+                        <div class="price">$59.00 <span>/Month</span></div>
+                        <ul class="features">
+                            <li><i class='bx bx-check'></i> 2 Hour Session</li>
+                            <li><i class='bx bx-check'></i> 20 Digital Images</li>
+                            <li><i class='bx bx-check'></i> Online Gallery</li>
+                            <li><i class='bx bx-check'></i> 2 Photographer</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">PURCHASE NOW</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Professional Package</h3>
+                        <div class="price">$69.00 <span>/Month</span></div>
+                        <ul class="features">
+                            <li><i class='bx bx-check'></i> 3 Hour Session</li>
+                            <li><i class='bx bx-check'></i> 30 Digital Images</li>
+                            <li><i class='bx bx-check'></i> Online Gallery</li>
+                            <li><i class='bx bx-check'></i> 4 Photographer</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">PURCHASE NOW</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Questions Section -->
+        <section class="questions-section">
+            <div class="questions-wrapper">
+                <div class="questions-image">
+                    <img src="https://placehold.co/650x650/333333/ffffff?text=Photographer" alt="Photographer with camera">
+                </div>
+                <div class="questions-form">
+                    <h2>Still Have A Questions?</h2>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Name*">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email*">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Messages..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                 <div class="section-title">
+                    <span class="sub-title">OUR TESTIMONIALS</span>
+                    <h2>Read What Our Client Says</h2>
+                </div>
+                <div class="testimonial-wrapper">
+                    <div class="testimonial-image">
+                        <img src="https://placehold.co/600x400/95a5a6/ecf0f1?text=Landscape" alt="Testimonial background image">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-author">
+                            <img src="https://placehold.co/60x60/3498db/ffffff?text=F" alt="Felix Faucheux">
+                            <div class="author-info">
+                                <h4>Felix Faucheux</h4>
+                                <span>Enterprenaur</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"There are many variation of passage of Lorem Ipsum available, but the major have suffered alteration in some form, injected humour randomised words which don't look Lorem ipsum dolor, sit amet consectetur adipisicing elit assumenda velit."</p>
+                    </div>
+                </div>
+                <div class="testimonial-nav">
+                    <i class='bx bx-left-arrow-alt'></i>
+                    <i class='bx bx-right-arrow-alt'></i>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Blog Section -->
+        <section class="blog-section">
+            <div class="container">
+                 <div class="section-title">
+                    <span class="sub-title">OUR BLOG</span>
+                    <h2>News & Blog Update</h2>
+                </div>
+                <div class="blog-grid">
+                    <div class="blog-post-card">
+                        <div class="post-image">
+                            <img src="https://placehold.co/350x250/d3bba8/333333?text=Blog+1" alt="Blog post 1">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta"><span class="dot">•</span> May 22, 2024</div>
+                            <h3>8 Key Differences You Need To Know Before Buying Camera</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur dipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
+                            <a href="#" class="read-more">READ MORE</a>
+                        </div>
+                    </div>
+                    <div class="blog-post-card">
+                         <div class="post-image">
+                            <img src="https://placehold.co/350x250/a39594/ffffff?text=Blog+2" alt="Blog post 2">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta"><span class="dot">•</span> May 15, 2024</div>
+                            <h3>The Blushing Bride With A Bouquet On Hand Photography</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur dipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
+                            <a href="#" class="read-more">READ MORE</a>
+                        </div>
+                    </div>
+                    <div class="blog-post-card">
+                         <div class="post-image">
+                            <img src="https://placehold.co/350x250/8f9a8a/ffffff?text=Blog+3" alt="Blog post 3">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta"><span class="dot">•</span> Apr 19, 2024</div>
+                            <h3>Creating Polarization Effect In DJI Drone Photography</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur dipiscing elit sed do eiusmod tempor incididunt ut labore.</p>
+                            <a href="#" class="read-more">READ MORE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-widgets">
+                <div class="footer-widget">
+                    <a href="#" class="logo" style="color: white; margin-bottom: 20px;">
+                        <img src="https://placehold.co/40x40/d13636/ffffff?text=P" alt="Povi Logo">
+                        Povi
+                    </a>
+                    <p>Subscribe to our newsletter for discounts and more latest offer.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter Your Email">
+                        <button type="submit">SUBSCRIBE NOW</button>
+                    </form>
+                    <div class="social-links">
+                        <a href="#"><i class='bx bxl-facebook'></i></a>
+                        <a href="#"><i class='bx bxl-twitter'></i></a>
+                        <a href="#"><i class='bx bxl-instagram'></i></a>
+                        <a href="#"><i class='bx bxl-linkedin'></i></a>
+                    </div>
+                </div>
+                <div class="footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">News & Blog</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Our Projects</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4>Follow Instagram</h4>
+                    <div class="instagram-gallery">
+                        <img src="https://placehold.co/80x80/e8c3b9/333333" alt="insta1">
+                        <img src="https://placehold.co/80x80/a39594/ffffff" alt="insta2">
+                        <img src="https://placehold.co/80x80/d9c7ba/333333" alt="insta3">
+                        <img src="https://placehold.co/80x80/d3bba8/333333" alt="insta4">
+                    </div>
+                </div>
+                <div class="footer-widget">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class='bx bxs-map'></i>
+                            <span>5961 De Santa Ave, Huntington Park, CA 90255, USA</span>
+                        </li>
+                        <li>
+                            <i class='bx bxs-phone-call'></i>
+                            <div>
+                                +1-3454-5678-77 <br>
+                                +1-6657-2341-12
+                            </div>
+                        </li>
+                        <li>
+                            <i class='bx bxs-envelope'></i>
+                             <div>
+                                hello@povi.com <br>
+                                support@povi.com
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <p>© Povi. All Rights Reserved By <a href="#">HiBootstrap</a></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
